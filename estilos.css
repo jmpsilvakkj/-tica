@@ -14,9 +14,9 @@
     --accent-glow: rgba(255, 107, 53, 0.25);
     
     --positive: #10b981;
-    --positive-bg: rgba(16, 185, 129, 0.1);
+    --positive-bg: rgba(16, 185, 129, 0.15);
     --negative: #ef4444;
-    --negative-bg: rgba(239, 68, 68, 0.1);
+    --negative-bg: rgba(239, 68, 68, 0.15);
 
     --border-color: rgba(255, 255, 255, 0.08);
     --border-active: rgba(255, 107, 53, 0.4);
@@ -48,7 +48,7 @@ body {
 }
 
 /* ==========================================================================
-   2. HERO INTERATIVO (Iluminação de Fundo)
+   2. HERO INTERATIVO
    ========================================================================== */
 .hero {
     position: relative;
@@ -84,7 +84,6 @@ body {
     padding: 0.4rem 1rem;
     border-radius: 50px;
     margin-bottom: 1.25rem;
-    backdrop-filter: blur(8px);
 }
 
 .hero h1 {
@@ -92,7 +91,6 @@ body {
     font-weight: 800;
     color: var(--text-heading);
     line-height: 1.2;
-    letter-spacing: -0.02em;
     margin-bottom: 1rem;
     background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
     -webkit-background-clip: text;
@@ -107,7 +105,7 @@ body {
 }
 
 /* ==========================================================================
-   3. ESTRUTURA DOS CARDS COM HOVER & BRILHO
+   3. ESTRUTURA DOS CARDS
    ========================================================================== */
 main {
     padding: 2rem 0 4rem;
@@ -126,7 +124,6 @@ main {
     overflow: hidden;
 }
 
-/* Efeito de destaque no topo do card quando o mouse passa por cima */
 .card::before {
     content: '';
     position: absolute;
@@ -154,14 +151,83 @@ main {
     font-weight: 700;
     color: var(--text-heading);
     margin-bottom: 1.25rem;
+    text-align: center;
 }
 
 .card p {
     color: var(--text-bright);
+    text-align: center;
 }
 
 /* ==========================================================================
-   4. GRID DE LENTES
+   4. SIMULADOR INTERATIVO
+   ========================================================================== */
+.interactive-box {
+    background: rgba(10, 15, 29, 0.6);
+    border: 1px solid var(--border-color);
+    padding: 1.75rem;
+    border-radius: 12px;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.slider-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.slider-container label {
+    font-size: 1.1rem;
+    color: var(--text-heading);
+}
+
+.slider-container input[type="range"] {
+    width: 100%;
+    accent-color: var(--accent-orange);
+    cursor: pointer;
+}
+
+.simulator-results {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.result-badge {
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.result-badge.positive {
+    background-color: var(--positive-bg);
+    color: var(--positive);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.result-badge.negative {
+    background-color: var(--negative-bg);
+    color: var(--negative);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.result-badge.neutral {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-bright);
+}
+
+/* ==========================================================================
+   5. GRID DE LENTES
    ========================================================================== */
 .grid-2 {
     display: grid;
@@ -172,15 +238,14 @@ main {
 .feature-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 .card-tag {
-    align-self: flex-start;
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
     padding: 0.3rem 0.75rem;
     border-radius: 50px;
     margin-bottom: 1.25rem;
@@ -210,10 +275,11 @@ main {
     border-top: 1px dashed var(--border-color);
     font-size: 0.85rem;
     color: var(--text-body);
+    width: 100%;
 }
 
 /* ==========================================================================
-   5. BLOCOS DE FÓRMULAS DESTACADOS
+   6. BLOCOS DE FÓRMULAS
    ========================================================================== */
 .formula-box, .dioptria-box {
     background: rgba(10, 15, 29, 0.6);
@@ -223,11 +289,6 @@ main {
     margin: 1.5rem 0;
     text-align: center;
     transition: var(--transition);
-}
-
-.formula-box:hover, .dioptria-box:hover {
-    border-color: rgba(255, 255, 255, 0.2);
-    background: rgba(10, 15, 29, 0.9);
 }
 
 .math-display {
@@ -248,10 +309,11 @@ main {
     border-radius: 12px;
     font-size: 0.95rem;
     color: #ffd8cc;
+    text-align: center;
 }
 
 /* ==========================================================================
-   6. DEFEITOS VISUAIS COM INTERAÇÃO
+   7. DEFEITOS VISUAIS (CENTRALIZADOS)
    ========================================================================== */
 .defects-grid {
     display: grid;
@@ -267,7 +329,9 @@ main {
     border-radius: 12px;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    align-items: center; /* Centralização do conteúdo dos quadros */
+    text-align: center; /* Centralização do texto */
+    gap: 0.75rem;
     transition: var(--transition);
 }
 
@@ -282,8 +346,7 @@ main {
 }
 
 .defect-icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.25rem;
+    font-size: 1.75rem;
 }
 
 .defect-item h4 {
@@ -292,13 +355,10 @@ main {
 }
 
 .pill {
-    display: inline-block;
-    margin-top: auto;
-    padding: 0.25rem 0.6rem;
+    padding: 0.3rem 0.75rem;
     border-radius: 6px;
     font-size: 0.75rem;
     font-weight: 700;
-    width: fit-content;
 }
 
 .pill.negative-pill {
@@ -312,18 +372,13 @@ main {
 }
 
 /* ==========================================================================
-   7. EXIBIÇÃO DA IMAGEM
+   8. EXIBIÇÃO DA IMAGEM
    ========================================================================== */
 .img-wrapper {
     margin-top: 1.25rem;
     border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
-    transition: var(--transition);
-}
-
-.img-wrapper:hover {
-    border-color: var(--border-active);
 }
 
 .infographic-img {
@@ -333,7 +388,7 @@ main {
 }
 
 /* ==========================================================================
-   8. RODAPÉ
+   9. RODAPÉ
    ========================================================================== */
 footer {
     border-top: 1px solid var(--border-color);
@@ -349,7 +404,7 @@ footer strong {
 }
 
 /* ==========================================================================
-   9. RESPONSIVIDADE
+   10. RESPONSIVIDADE
    ========================================================================== */
 @media (max-width: 640px) {
     .hero h1 {

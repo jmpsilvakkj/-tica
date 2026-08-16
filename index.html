@@ -8,10 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Configuração do MathJax para aceitar fórmulas inline com $...$ -->
+    <!-- Configuração do MathJax para fórmulas inline -->
     <script>
       window.MathJax = {
         tex: {
@@ -25,7 +23,6 @@
 
     <!-- Cabeçalho / Hero -->
     <header class="hero">
-        <div class="hero-overlay"></div>
         <div class="container hero-content">
             <span class="hero-badge">Óptica Geométrica</span>
             <h1>A FÍSICA DOS ÓCULOS DE GRAU</h1>
@@ -37,12 +34,28 @@
         
         <!-- Introdução -->
         <section class="card intro-card">
-            <div class="card-header">
-                <h2>Conceitos Fundamentais</h2>
-            </div>
+            <h2>Conceitos Fundamentais</h2>
             <p>
                 A óptica geométrica explica o funcionamento dos óculos: <strong>lentes especiais refratam (desviam) os raios de luz</strong> para focar a imagem exatamente na retina. O poder de refração de uma lente é medido em <strong>dioptrias (D)</strong> — o famoso "grau". 
             </p>
+        </section>
+
+        <!-- Simulador Interativo -->
+        <section class="card simulator-card">
+            <h2>Simulador Interativo de Dioptria</h2>
+            <p>Deslize para alterar o grau (D) e veja o comportamento da lente e o cálculo da distância focal ($f = \frac{1}{D}$):</p>
+            
+            <div class="interactive-box">
+                <div class="slider-container">
+                    <label for="dioptriaSlider">Grau da Lente: <strong id="degreeValue">2.00</strong> D</label>
+                    <input type="range" id="dioptriaSlider" min="-6" max="6" step="0.25" value="2">
+                </div>
+
+                <div class="simulator-results">
+                    <div class="result-badge" id="lensType">Lente Convergente</div>
+                    <p id="focalDistanceText">Distância Focal: <strong>0.50 metros</strong> (50 cm)</p>
+                </div>
+            </div>
         </section>
 
         <!-- Tipos de Lentes (Grid) -->
@@ -90,7 +103,7 @@
             </div>
 
             <p class="highlight-text">
-                <strong>Curiosidade:</strong> O vidro comum possui índice de refração $\approx 1.5n$, enquanto o policarbonato chega a $1.59n$. Quanto maior o índice $n$, mais fina a lente pode ser para o mesmo grau.
+                <strong>Curiosidade:</strong> O vidro comum possui índice de refração $\approx 1,5$, enquanto o policarbonato chega a $1,59$. Quanto maior o índice $n$, mais fina a lente pode ser para o mesmo grau.
             </p>
         </section>
 
@@ -127,7 +140,7 @@
             <h2>Infográfico de Apoio</h2>
             <p>Visualização esquemática da refração nas lentes:</p>
             <div class="img-wrapper">
-                <img src="Infográfico" alt="Infográfico A Física dos Óculos de Grau" class="infographic-img">
+                <img src="1.png" alt="Infográfico A Física dos Óculos de Grau" class="infographic-img">
             </div>
         </section>
 
@@ -139,5 +152,33 @@
         </div>
     </footer>
 
+    <!-- Lógica Interativa do Simulador -->
+    <script>
+        const slider = document.getElementById('dioptriaSlider');
+        const degreeValue = document.getElementById('degreeValue');
+        const lensType = document.getElementById('lensType');
+        const focalDistanceText = document.getElementById('focalDistanceText');
+
+        slider.addEventListener('input', (e) => {
+            const val = parseFloat(e.target.value);
+            degreeValue.textContent = (val > 0 ? '+' : '') + val.toFixed(2);
+
+            if (val === 0) {
+                lensType.textContent = "Plana (Sem Grau)";
+                lensType.className = "result-badge neutral";
+                focalDistanceText.innerHTML = "Distância Focal: <strong>Infinita</strong>";
+            } else if (val > 0) {
+                lensType.textContent = "Lente Convergente (Hipermetropia)";
+                lensType.className = "result-badge positive";
+                const f = 1 / val;
+                focalDistanceText.innerHTML = `Distância Focal: <strong>${f.toFixed(2)}m</strong> (${(f * 100).toFixed(0)} cm)`;
+            } else {
+                lensType.textContent = "Lente Divergente (Miopia)";
+                lensType.className = "result-badge negative";
+                const f = Math.abs(1 / val);
+                focalDistanceText.innerHTML = `Distância Focal Virtual: <strong>${f.toFixed(2)}m</strong> (${(f * 100).toFixed(0)} cm)`;
+            }
+        });
+    </script>
 </body>
 </html>
