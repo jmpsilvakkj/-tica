@@ -1,138 +1,132 @@
 /* ==========================================================================
-   1. CONFIGURAÇÕES GERAIS E VARIÁVEIS
+   1. VARIÁVEIS E BASE EDITORIAL
    ========================================================================== */
 :root {
-    --primary-color: #e65100;
-    --primary-light: #ff9800;
-    --primary-dark: #b23c00;
-    --bg-color: #f4f6f9;
-    --card-bg: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --positive-color: #059669;
+    --bg-main: #fcfcfd;
+    --surface: #ffffff;
+    --text-heading: #0f172a;
+    --text-body: #334155;
+    --text-muted: #64748b;
+    
+    --accent: #d97706;          /* Laranja queimado elegante */
+    --accent-light: #fef3c7;
+    --border-color: #e2e8f0;
+    --border-dark: #cbd5e1;
+
+    --positive: #047857;
     --positive-bg: #ecfdf5;
-    --negative-color: #dc2626;
+    --negative: #b91c1c;
     --negative-bg: #fef2f2;
-    --border-radius: 16px;
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 25px -5px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 20px 35px -10px rgba(0, 0, 0, 0.12);
-    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-primary);
-    line-height: 1.6;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+    background-color: var(--bg-main);
+    color: var(--text-body);
+    font-family: var(--font-body);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
 }
 
 .container {
-    max-width: 960px;
+    max-width: 880px;
     margin: 0 auto;
     padding: 0 1.5rem;
     width: 100%;
 }
 
 /* ==========================================================================
-   2. HERO / CABEÇALHO
+   2. CABEÇALHO / HERO (Visual Limpo e Direto)
    ========================================================================== */
 .hero {
+    background-color: var(--surface);
+    border-bottom: 1px solid var(--border-color);
+    padding: 4rem 0 3rem;
     position: relative;
-    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-    color: #ffffff;
-    padding: 4.5rem 0 3.5rem 0;
-    text-align: center;
-    border-bottom: 4px solid var(--primary-color);
+}
+
+.hero-content {
+    text-align: left; /* Alinhamento à esquerda foge do padrão centralizado genérico */
 }
 
 .hero-badge {
-    background: rgba(230, 81, 0, 0.2);
-    color: var(--primary-light);
-    border: 1px solid var(--primary-light);
-    padding: 0.35rem 1rem;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
     display: inline-block;
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    background-color: var(--accent-light);
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
     margin-bottom: 1rem;
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
     font-weight: 700;
-    letter-spacing: -0.5px;
-    margin-bottom: 0.75rem;
-    color: #ffffff;
+    color: var(--text-heading);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
 }
 
 .hero .subtitle {
     font-size: 1.15rem;
-    color: #94a3b8;
-    max-width: 600px;
-    margin: 0 auto;
-    font-weight: 300;
+    color: var(--text-muted);
+    font-weight: 400;
+    max-width: 680px;
 }
 
 /* ==========================================================================
-   3. ESTRUTURA DE CARDS
+   3. ESTRUTURA DOS CARDS (Bordas Definidas sem Sombra Excessiva)
    ========================================================================== */
 main {
-    margin-top: -1.5rem;
+    padding: 3rem 0;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
-    padding-bottom: 3rem;
+    gap: 2rem;
 }
 
 .card {
-    background: var(--card-bg);
-    border-radius: var(--border-radius);
-    padding: 2rem;
-    box-shadow: var(--shadow-md);
-    transition: var(--transition);
-    border: 1px solid rgba(226, 232, 240, 0.8);
+    background: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2.25rem;
+    transition: border-color 0.2s ease;
 }
 
 .card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    border-color: var(--border-dark);
 }
 
 .card h2 {
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-.card h2::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 3px;
-    background: var(--primary-color);
-    margin-top: 0.4rem;
-    border-radius: 2px;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    color: var(--text-heading);
+    margin-bottom: 1.25rem;
+    letter-spacing: -0.01em;
 }
 
 /* ==========================================================================
-   4. GRID DE LENTES
+   4. GRID DE LENTES (Design Assimétrico / Editorial)
    ========================================================================== */
 .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 1.5rem;
 }
 
@@ -140,72 +134,77 @@ main {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
 }
 
 .card-tag {
     align-self: flex-start;
-    padding: 0.3rem 0.8rem;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
     margin-bottom: 1rem;
 }
 
 .card-tag.positive {
     background-color: var(--positive-bg);
-    color: var(--positive-color);
+    color: var(--positive);
+    border: 1px solid rgba(4, 120, 87, 0.2);
 }
 
 .card-tag.negative {
     background-color: var(--negative-bg);
-    color: var(--negative-color);
+    color: var(--negative);
+    border: 1px solid rgba(185, 28, 28, 0.2);
 }
 
 .feature-card h3 {
-    font-size: 1.25rem;
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--text-heading);
     margin-bottom: 0.75rem;
 }
 
 .info-footer {
-    margin-top: 1.5rem;
-    padding-top: 1rem;
-    border-top: 1px dashed #e2e8f0;
+    margin-top: 1.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
     font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-style: italic;
+    color: var(--text-muted);
 }
 
 /* ==========================================================================
-   5. SEÇÃO DE FÓRMULAS E FÍSICA
+   5. BLOCOS DE FÓRMULAS
    ========================================================================== */
 .formula-box, .dioptria-box {
     background: #f8fafc;
-    border-left: 4px solid var(--primary-color);
-    padding: 1.25rem;
-    border-radius: 0 12px 12px 0;
-    margin: 1.25rem 0;
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
+    margin: 1.5rem 0;
     text-align: center;
 }
 
 .math-display {
-    font-size: 1.2rem;
-    color: #0f172a;
+    font-size: 1.3rem;
+    color: var(--text-heading);
     margin: 0.5rem 0;
 }
 
 .formula-caption {
     font-size: 0.85rem;
-    color: var(--text-secondary);
+    color: var(--text-muted);
 }
 
 .highlight-text {
-    background-color: #fff7ed;
-    border: 1px solid #ffedd5;
-    padding: 1rem;
-    border-radius: 10px;
+    background-color: var(--accent-light);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     font-size: 0.95rem;
-    color: #9a3412;
+    color: #78350f;
 }
 
 /* ==========================================================================
@@ -213,16 +212,16 @@ main {
    ========================================================================== */
 .defects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.25rem;
-    margin-top: 1.25rem;
+    margin-top: 1rem;
 }
 
 .defect-item {
-    background: #f8fafc;
-    padding: 1.25rem;
-    border-radius: 12px;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-main);
+    border: 1px solid var(--border-color);
+    padding: 1.5rem;
+    border-radius: var(--radius-sm);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -233,18 +232,20 @@ main {
 }
 
 .defect-icon {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .defect-item h4 {
+    font-family: var(--font-heading);
     font-size: 1.1rem;
-    color: var(--text-primary);
+    color: var(--text-heading);
 }
 
 .pill {
     display: inline-block;
     margin-top: auto;
-    padding: 0.25rem 0.6rem;
+    padding: 0.2rem 0.5rem;
     border-radius: 4px;
     font-size: 0.75rem;
     font-weight: 600;
@@ -253,67 +254,60 @@ main {
 
 .pill.negative-pill {
     background-color: var(--negative-bg);
-    color: var(--negative-color);
+    color: var(--negative);
 }
 
 .pill.positive-pill {
     background-color: var(--positive-bg);
-    color: var(--positive-color);
+    color: var(--positive);
 }
 
 /* ==========================================================================
-   7. IMAGEM DO INFOGRÁFICO (EFEITO DE ZOOM REMOVIDO)
+   7. EXIBIÇÃO DA IMAGEM
    ========================================================================== */
 .img-wrapper {
-    margin-top: 1rem;
-    border-radius: 12px;
+    margin-top: 1.25rem;
+    border-radius: var(--radius-sm);
     overflow: hidden;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid #e2e8f0;
+    border: 1px solid var(--border-color);
 }
 
 .infographic-img {
     width: 100%;
     height: auto;
     display: block;
-    transition: opacity 0.3s ease;
-}
-
-/* Removemos o transform: scale e adicionamos um ajuste sutil sem mover a imagem */
-.img-wrapper:hover .infographic-img {
-    opacity: 0.95;
 }
 
 /* ==========================================================================
-   8. RODAPÉ
+   8. RODAPÉ (Minimalista)
    ========================================================================== */
 footer {
-    background-color: #0f172a;
-    color: #94a3b8;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--surface);
+    color: var(--text-muted);
     text-align: center;
-    padding: 2rem 0;
-    margin-top: auto;
-    font-size: 0.9rem;
+    padding: 2.5rem 0;
+    font-size: 0.875rem;
 }
 
 footer strong {
-    color: var(--primary-light);
+    color: var(--text-heading);
 }
 
 /* ==========================================================================
    9. RESPONSIVIDADE
    ========================================================================== */
-@media (max-width: 600px) {
-    .hero h1 {
-        font-size: 1.8rem;
+@media (max-width: 640px) {
+    .hero {
+        padding: 2.5rem 0 2rem;
     }
 
-    .hero .subtitle {
-        font-size: 1rem;
+    .hero h1 {
+        font-size: 2rem;
     }
 
     .card {
-        padding: 1.25rem;
+        padding: 1.5rem;
     }
 
     .defect-item.full-width {
