@@ -9,8 +9,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Renderização de fórmulas matemáticas (MathJax) -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/polyfill/3.111.0/polyfill.min.js"></script>
+    <!-- Configuração do MathJax para aceitar fórmulas inline com $...$ -->
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        }
+      };
+    </script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
@@ -119,7 +125,7 @@
             <h2>Infográfico de Apoio</h2>
             <p>Visualização esquemática da refração nas lentes:</p>
             <div class="img-wrapper">
-                <img src="Infográfico" alt="Infográfico A Física dos Óculos de Grau" class="infographic-img">
+                <img src="1.png" alt="Infográfico A Física dos Óculos de Grau" class="infographic-img">
             </div>
         </section>
 

@@ -128,7 +128,7 @@ main {
 }
 
 /* ==========================================================================
-   4. GRID DE LENTAS (CONVERGENTE E DIVERGENTE)
+   4. GRID DE LENTES
    ========================================================================== */
 .grid-2 {
     display: grid;
@@ -262,7 +262,7 @@ main {
 }
 
 /* ==========================================================================
-   7. IMAGEM DO INFOGRÁFICO
+   7. IMAGEM DO INFOGRÁFICO (EFEITO DE ZOOM REMOVIDO)
    ========================================================================== */
 .img-wrapper {
     margin-top: 1rem;
@@ -276,11 +276,12 @@ main {
     width: 100%;
     height: auto;
     display: block;
-    transition: transform 0.5s ease;
+    transition: opacity 0.3s ease;
 }
 
+/* Removemos o transform: scale e adicionamos um ajuste sutil sem mover a imagem */
 .img-wrapper:hover .infographic-img {
-    transform: scale(1.02);
+    opacity: 0.95;
 }
 
 /* ==========================================================================
