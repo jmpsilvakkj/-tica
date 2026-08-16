@@ -1,28 +1,29 @@
 /* ==========================================================================
-   1. VARIÁVEIS E BASE EDITORIAL
+   1. VARIÁVEIS E BASE
    ========================================================================== */
 :root {
-    --bg-main: #fcfcfd;
-    --surface: #ffffff;
-    --text-heading: #0f172a;
-    --text-body: #334155;
-    --text-muted: #64748b;
+    --bg-main: #0a0f1d;
+    --surface: #131b2e;
+    --surface-hover: #1c273e;
     
-    --accent: #d97706;          /* Laranja queimado elegante */
-    --accent-light: #fef3c7;
-    --border-color: #e2e8f0;
-    --border-dark: #cbd5e1;
+    --text-heading: #ffffff;
+    --text-body: #94a3b8;
+    --text-bright: #e2e8f0;
 
-    --positive: #047857;
-    --positive-bg: #ecfdf5;
-    --negative: #b91c1c;
-    --negative-bg: #fef2f2;
+    --accent-orange: #ff6b35;
+    --accent-glow: rgba(255, 107, 53, 0.25);
+    
+    --positive: #10b981;
+    --positive-bg: rgba(16, 185, 129, 0.1);
+    --negative: #ef4444;
+    --negative-bg: rgba(239, 68, 68, 0.1);
 
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-body: 'Poppins', sans-serif;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --border-active: rgba(255, 107, 53, 0.4);
 
-    --radius-sm: 8px;
-    --radius-md: 12px;
+    --font-family: 'Plus Jakarta Sans', sans-serif;
+    --radius-main: 16px;
+    --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -34,99 +35,137 @@
 body {
     background-color: var(--bg-main);
     color: var(--text-body);
-    font-family: var(--font-body);
+    font-family: var(--font-family);
     line-height: 1.7;
-    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 .container {
-    max-width: 880px;
+    max-width: 920px;
     margin: 0 auto;
     padding: 0 1.5rem;
     width: 100%;
 }
 
 /* ==========================================================================
-   2. CABEÇALHO / HERO (Visual Limpo e Direto)
+   2. HERO INTERATIVO (Iluminação de Fundo)
    ========================================================================== */
 .hero {
-    background-color: var(--surface);
-    border-bottom: 1px solid var(--border-color);
-    padding: 4rem 0 3rem;
     position: relative;
+    padding: 5rem 0 3.5rem;
+    text-align: center;
+    background: radial-gradient(circle at 50% -20%, #2a1b40 0%, var(--bg-main) 70%);
 }
 
-.hero-content {
-    text-align: left; /* Alinhamento à esquerda foge do padrão centralizado genérico */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 300px;
+    background: var(--accent-orange);
+    filter: blur(140px);
+    opacity: 0.25;
+    pointer-events: none;
+    border-radius: 50%;
 }
 
 .hero-badge {
     display: inline-block;
-    font-family: var(--font-heading);
     font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--accent);
-    background-color: var(--accent-light);
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    color: var(--accent-orange);
+    background: var(--accent-glow);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    padding: 0.4rem 1rem;
+    border-radius: 50px;
+    margin-bottom: 1.25rem;
+    backdrop-filter: blur(8px);
 }
 
 .hero h1 {
-    font-family: var(--font-heading);
-    font-size: 2.75rem;
-    font-weight: 700;
+    font-size: 2.8rem;
+    font-weight: 800;
     color: var(--text-heading);
-    line-height: 1.15;
+    line-height: 1.2;
     letter-spacing: -0.02em;
     margin-bottom: 1rem;
+    background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .hero .subtitle {
     font-size: 1.15rem;
-    color: var(--text-muted);
-    font-weight: 400;
-    max-width: 680px;
+    color: var(--text-body);
+    max-width: 620px;
+    margin: 0 auto;
 }
 
 /* ==========================================================================
-   3. ESTRUTURA DOS CARDS (Bordas Definidas sem Sombra Excessiva)
+   3. ESTRUTURA DOS CARDS COM HOVER & BRILHO
    ========================================================================== */
 main {
-    padding: 3rem 0;
+    padding: 2rem 0 4rem;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.75rem;
 }
 
 .card {
-    background: var(--surface);
+    background-color: var(--surface);
     border: 1px solid var(--border-color);
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-main);
     padding: 2.25rem;
-    transition: border-color 0.2s ease;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Efeito de destaque no topo do card quando o mouse passa por cima */
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent-orange), transparent);
+    opacity: 0;
+    transition: var(--transition);
 }
 
 .card:hover {
-    border-color: var(--border-dark);
+    transform: translateY(-5px);
+    border-color: var(--border-active);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.5), 0 0 20px var(--accent-glow);
+}
+
+.card:hover::before {
+    opacity: 1;
 }
 
 .card h2 {
-    font-family: var(--font-heading);
     font-size: 1.6rem;
+    font-weight: 700;
     color: var(--text-heading);
     margin-bottom: 1.25rem;
-    letter-spacing: -0.01em;
+}
+
+.card p {
+    color: var(--text-bright);
 }
 
 /* ==========================================================================
-   4. GRID DE LENTES (Design Assimétrico / Editorial)
+   4. GRID DE LENTES
    ========================================================================== */
 .grid-2 {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
 }
 
@@ -138,93 +177,104 @@ main {
 
 .card-tag {
     align-self: flex-start;
-    font-family: var(--font-heading);
     font-size: 0.75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    padding: 0.3rem 0.75rem;
+    border-radius: 50px;
+    margin-bottom: 1.25rem;
 }
 
 .card-tag.positive {
     background-color: var(--positive-bg);
     color: var(--positive);
-    border: 1px solid rgba(4, 120, 87, 0.2);
+    border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .card-tag.negative {
     background-color: var(--negative-bg);
     color: var(--negative);
-    border: 1px solid rgba(185, 28, 28, 0.2);
+    border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .feature-card h3 {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
+    font-size: 1.35rem;
     color: var(--text-heading);
     margin-bottom: 0.75rem;
 }
 
 .info-footer {
     margin-top: 1.75rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-body);
 }
 
 /* ==========================================================================
-   5. BLOCOS DE FÓRMULAS
+   5. BLOCOS DE FÓRMULAS DESTACADOS
    ========================================================================== */
 .formula-box, .dioptria-box {
-    background: #f8fafc;
+    background: rgba(10, 15, 29, 0.6);
     border: 1px solid var(--border-color);
     padding: 1.5rem;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     margin: 1.5rem 0;
     text-align: center;
+    transition: var(--transition);
+}
+
+.formula-box:hover, .dioptria-box:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(10, 15, 29, 0.9);
 }
 
 .math-display {
-    font-size: 1.3rem;
-    color: var(--text-heading);
+    font-size: 1.35rem;
+    color: #ffffff;
     margin: 0.5rem 0;
 }
 
 .formula-caption {
     font-size: 0.85rem;
-    color: var(--text-muted);
+    color: var(--text-body);
 }
 
 .highlight-text {
-    background-color: var(--accent-light);
-    border-left: 3px solid var(--accent);
-    padding: 1rem 1.25rem;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: rgba(255, 107, 53, 0.08);
+    border: 1px solid rgba(255, 107, 53, 0.2);
+    padding: 1.25rem;
+    border-radius: 12px;
     font-size: 0.95rem;
-    color: #78350f;
+    color: #ffd8cc;
 }
 
 /* ==========================================================================
-   6. DEFEITOS VISUAIS
+   6. DEFEITOS VISUAIS COM INTERAÇÃO
    ========================================================================== */
 .defects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1.25rem;
     margin-top: 1rem;
 }
 
 .defect-item {
-    background: var(--bg-main);
+    background: rgba(10, 15, 29, 0.5);
     border: 1px solid var(--border-color);
     padding: 1.5rem;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    transition: var(--transition);
+}
+
+.defect-item:hover {
+    background: var(--surface-hover);
+    transform: translateY(-3px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .defect-item.full-width {
@@ -232,23 +282,22 @@ main {
 }
 
 .defect-icon {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     margin-bottom: 0.25rem;
 }
 
 .defect-item h4 {
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     color: var(--text-heading);
 }
 
 .pill {
     display: inline-block;
     margin-top: auto;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     width: fit-content;
 }
 
@@ -267,9 +316,14 @@ main {
    ========================================================================== */
 .img-wrapper {
     margin-top: 1.25rem;
-    border-radius: var(--radius-sm);
+    border-radius: 12px;
     overflow: hidden;
     border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.img-wrapper:hover {
+    border-color: var(--border-active);
 }
 
 .infographic-img {
@@ -279,29 +333,25 @@ main {
 }
 
 /* ==========================================================================
-   8. RODAPÉ (Minimalista)
+   8. RODAPÉ
    ========================================================================== */
 footer {
     border-top: 1px solid var(--border-color);
-    background-color: var(--surface);
-    color: var(--text-muted);
+    background-color: #070a14;
+    color: var(--text-body);
     text-align: center;
     padding: 2.5rem 0;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
 }
 
 footer strong {
-    color: var(--text-heading);
+    color: var(--accent-orange);
 }
 
 /* ==========================================================================
    9. RESPONSIVIDADE
    ========================================================================== */
 @media (max-width: 640px) {
-    .hero {
-        padding: 2.5rem 0 2rem;
-    }
-
     .hero h1 {
         font-size: 2rem;
     }
