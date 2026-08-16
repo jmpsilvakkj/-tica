@@ -7,99 +7,117 @@
     <link rel="stylesheet" href="estilos.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Renderização de fórmulas matemáticas (MathJax) -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
 
+    <!-- Cabeçalho / Hero -->
     <header class="hero">
-        <div class="container">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+            <span class="hero-badge">Óptica Geométrica</span>
             <h1>A FÍSICA DOS ÓCULOS DE GRAU</h1>
-            <p class="subtitle">Como as lentes corrigem problemas de visão através da refração da luz</p>
+            <p class="subtitle">Descubra como a refração da luz transforma e corrige a visão humana.</p>
         </div>
     </header>
 
     <main class="container">
         
+        <!-- Introdução -->
         <section class="card intro-card">
-            <h2>Entenda os Conceitos Fundamentais</h2>
+            <div class="card-header">
+                <h2>Conceitos Fundamentais</h2>
+            </div>
             <p>
-                A óptica geométrica explica como os óculos funcionam: **Lentes especiais refratam (desviam) a luz** para corrigir deficiências visuais. A unidade de medida do poder das lentes é a **dioptria (D)**. Lentes convergentes têm valor positivo e lentes divergentes têm valor negativo. O índice de refração determina o quanto a luz é desviada ao passar pelo material da lente.
+                A óptica geométrica explica o funcionamento dos óculos: <strong>lentes especiais refratam (desviam) os raios de luz</strong> para focar a imagem exatamente na retina. O poder de refração de uma lente é medido em <strong>dioptrias (D)</strong> — o famoso "grau". 
             </p>
         </section>
 
+        <!-- Tipos de Lentes (Grid) -->
         <section class="grid-2">
             
-            <div class="card feature-card">
-                <span class="tag positive">+ Grau Positivo</span>
+            <div class="card feature-card convex">
+                <div class="card-tag positive">+ Grau Positivo</div>
                 <h3>Lentes Convergentes (Convexas)</h3>
                 <p>
-                    As lentes convergentes são mais espessas no centro do que nas bordas. Elas convergem os raios de luz para um ponto focal, corrigindo a <strong>hipermetropia</strong> (visão de perto prejudicada).
+                    São mais espessas no centro do que nas bordas. Elas aproximam os raios de luz para um ponto focal único, corrigindo a <strong>hipermetropia</strong> (dificuldade para enxergar de perto).
                 </p>
-                <p>
-                    O poder dióptrico é positivo. A distância focal ($f$) determina onde a imagem é formada. Quanto maior a dioptria, maior o poder de refração da lente e mais curta é a distância focal.
-                </p>
+                <div class="info-footer">
+                    <span>Distância focal ($f$) curta = Maior poder dióptrico</span>
+                </div>
             </div>
 
-            <div class="card feature-card">
-                <span class="tag negative">- Grau Negativo</span>
+            <div class="card feature-card concave">
+                <div class="card-tag negative">- Grau Negativo</div>
                 <h3>Lentes Divergentes (Côncavas)</h3>
                 <p>
-                    As lentes divergentes são mais finas no centro do que nas bordas. Elas divergem os raios de luz, formando imagens virtuais menores. Corrigem a <strong>miopia</strong> (visão de longe prejudicada), na qual a imagem se forma antes da retina.
+                    São mais finas no centro e espessas nas bordas. Elas afastam os raios de luz antes que entrem no olho, corrigindo a <strong>miopia</strong> (dificuldade para enxergar de longe).
                 </p>
-                <p>
-                    O poder dióptrico é negativo. O foco virtual fica do mesmo lado da luz incidente, afastando o ponto de convergência para alcançar a retina.
-                </p>
+                <div class="info-footer">
+                    <span>Foco virtual do mesmo lado da luz incidente</span>
+                </div>
             </div>
 
         </section>
 
-        <section class="card highlight-card">
+        <!-- Seção de Fórmulas -->
+        <section class="card formula-card">
             <h2>Refração e Índice de Refração</h2>
             <p>
-                A refração acontece quando a luz muda de velocidade ao passar de um material para outro. Quem mede isso é o <strong>índice de refração ($n$)</strong>, calculado pela fórmula:
+                A refração ocorre quando a luz muda de velocidade ao passar do ar para o material da lente. Essa alteração é calculada pelo <strong>índice de refração ($n$)</strong>:
             </p>
             
             <div class="formula-box">
-                $$n = \frac{c}{v}$$
+                <p class="math-display">$$n = \frac{c}{v}$$</p>
+                <span class="formula-caption">Onde <strong>$c$</strong> é a velocidade da luz no vácuo e <strong>$v$</strong> é a velocidade no material.</span>
             </div>
 
-            <p class="formula-desc">
-                Onde <strong>$c$</strong> é a velocidade da luz no vácuo e <strong>$v$</strong> é a velocidade no material.
-            </p>
-            
-            <hr>
+            <div class="dioptria-box">
+                <h3>Calculando a Dioptria (Grau)</h3>
+                <p class="math-display">$$D = \frac{1}{f \text{ (em metros)}}$$</p>
+            </div>
 
-            <p>
-                Para ter uma ideia, o vidro óptico normal tem o índice em torno de <strong>1,5</strong> e o policarbonato fica em <strong>1,59</strong>. A lógica é: quanto maior esse número, mais a luz desvia. É por isso que materiais com índice mais alto conseguem deixar os óculos bem mais finos, mesmo para quem tem muito grau.
+            <p class="highlight-text">
+                <strong>Curiosidade:</strong> O vidro comum possui índice de refração $\approx 1,5$, enquanto o policarbonato chega a $1,59$. Quanto maior o índice $n$, mais fina a lente pode ser para o mesmo grau.
             </p>
         </section>
 
-        <section class="card">
-            <h2>Miopia vs. Hipermetropia</h2>
+        <!-- Erros de Refração -->
+        <section class="card defects-card">
+            <h2>Comparativo de Defeitos Visuais</h2>
             <div class="defects-grid">
+                
                 <div class="defect-item">
+                    <div class="defect-icon">🔍</div>
                     <h4>Miopia</h4>
-                    <p>O globo ocular é alongado e a imagem forma-se <strong>antes da retina</strong>. Corrigida com lentes divergentes (grau negativo).</p>
+                    <p>O olho é mais longo que o normal. A imagem se forma <strong>antes da retina</strong>.</p>
+                    <span class="pill negative-pill">Lente Divergente</span>
                 </div>
+
                 <div class="defect-item">
+                    <div class="defect-icon">📖</div>
                     <h4>Hipermetropia</h4>
-                    <p>O olho é curto e a imagem se forma <strong>atrás da retina</strong>. Corrigida com lentes convergentes (grau positivo).</p>
+                    <p>O olho é mais curto que o normal. A imagem se forma <strong>atrás da retina</strong>.</p>
+                    <span class="pill positive-pill">Lente Convergente</span>
                 </div>
+
                 <div class="defect-item full-width">
+                    <div class="defect-icon">🌀</div>
                     <h4>Astigmatismo</h4>
-                    <p>Causado por curvatura irregular da córnea, corrigido com lentes cilíndricas ou tóricas que refratam a luz de forma diferente em cada eixo.</p>
+                    <p>Irregularidade na curvatura da córnea, gerando múltiplos pontos de foco. Corrigido com <strong>lentes cilíndricas</strong>.</p>
                 </div>
+
             </div>
         </section>
 
-        <section class="banner-dioptria">
-            <h3>A DIOPTRIA (D) É A UNIDADE DE MEDIDA DO PODER ÓPTICO</h3>
-            <div class="main-formula">$$D = \frac{1}{f \text{ (metros)}}$$</div>
-        </section>
-
+        <!-- Infográfico Visual -->
         <section class="card image-section">
-            <h2>Infográfico Original</h2>
-            <p>Confira abaixo o material visual de apoio completo utilizado como base de pesquisa:</p>
+            <h2>Infográfico de Apoio</h2>
+            <p>Visualização esquemática da refração nas lentes:</p>
             <div class="img-wrapper">
                 <img src="1.png" alt="Infográfico A Física dos Óculos de Grau" class="infographic-img">
             </div>
@@ -109,11 +127,9 @@
 
     <footer>
         <div class="container">
-            <p>Desenvolvido com base no projeto de <strong>João Manoel e Igor Neves</strong></p>
+            <p>Desenvolvido com base no projeto acadêmico de <strong>João Manoel e Igor Neves</strong></p>
         </div>
     </footer>
-
-<img src="infográfico" alt="Infográfico Educativo Física das Lentes Oculares" class="featured-image">
 
 </body>
 </html>
